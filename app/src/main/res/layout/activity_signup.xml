@@ -1,128 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".Signup_activity">
+    android:fillViewport="true"
+    android:background="@color/screen_background">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="100dp"
-        android:text="Create Account"
-        android:textColor="#1F41BB"
-        android:textSize="24dp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:layout_marginTop="40dp"
-        android:text="Create an account to continue\n using our app"
-        android:textSize="18dp"
-        android:textColor="#575757"
-        android:textStyle="bold"
-        />
-
-    <EditText
-        android:inputType="textPersonName"
-        android:id="@+id/name_signup"
+    <LinearLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/custom_edittext"
-        android:drawableLeft="@drawable/user_svgrepo_com"
-        android:drawablePadding="10dp"
-        android:hint="Name"
-        android:padding="20dp" />
+        android:orientation="vertical"
+        android:padding="@dimen/_20sdp"
+        tools:context=".Signup_activity">
 
-    <EditText
-        android:inputType="textEmailAddress"
-        android:id="@+id/email_signup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginHorizontal="20dp"
-        android:hint="Email"
-        android:drawableLeft="@drawable/email_svgrepo_com"
-        android:drawablePadding="10dp"
-        android:background="@drawable/custom_edittext"
-        />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_40sdp"
+            android:text="Create Account"
+            android:textColor="@color/brand_color"
+            android:textSize="@dimen/_24ssp"
+            android:textStyle="bold" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:text="Create an account to continue\n using our app"
+            android:textSize="@dimen/_14ssp"
+            android:textColor="@color/secondary_text"
+            android:textStyle="bold"
+            />
 
-    <EditText
-        android:inputType="number"
-        android:id="@+id/number_signup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginHorizontal="20dp"
-        android:hint="Contact Number"
-        android:drawableLeft="@drawable/contact_new_svgrepo_com"
-        android:drawablePadding="10dp"
-        android:background="@drawable/custom_edittext"
-        />
+        <EditText
+            android:id="@+id/name_signup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:background="@drawable/custom_edittext"
+            android:drawableStart="@drawable/user_svgrepo_com"
+            android:drawablePadding="@dimen/_10sdp"
+            android:hint="Name"
+            android:inputType="textPersonName"
+            android:textColor="@color/primary_text"
+            android:textColorHint="@color/hint_color"
+            android:padding="@dimen/_15sdp" />
 
-    <EditText
-        android:inputType="textPassword"
-        android:id="@+id/password_signup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginHorizontal="20dp"
-        android:hint="Password"
-        android:drawableLeft="@drawable/lock_svgrepo_com"
-        android:drawablePadding="10dp"
-        android:background="@drawable/custom_edittext"
-        />
+        <EditText
+            android:id="@+id/email_signup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/primary_text"
+            android:textColorHint="@color/hint_color"
+            android:drawableStart="@drawable/email_svgrepo_com"
+            android:drawablePadding="@dimen/_10sdp"
+            android:background="@drawable/custom_edittext"
+            />
 
-    <EditText
-        android:inputType="textPassword"
-        android:id="@+id/confirm_password_signup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginHorizontal="20dp"
-        android:hint="Confirm Password"
-        android:drawableLeft="@drawable/lock_svgrepo_com"
-        android:drawablePadding="10dp"
-        android:background="@drawable/custom_edittext"
-        />
+        <EditText
+            android:id="@+id/number_signup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:hint="Contact Number"
+            android:inputType="phone"
+            android:textColor="@color/primary_text"
+            android:textColorHint="@color/hint_color"
+            android:drawableStart="@drawable/contact_new_svgrepo_com"
+            android:drawablePadding="@dimen/_10sdp"
+            android:background="@drawable/custom_edittext"
+            />
 
+        <EditText
+            android:id="@+id/password_signup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:textColor="@color/primary_text"
+            android:textColorHint="@color/hint_color"
+            android:drawableStart="@drawable/lock_svgrepo_com"
+            android:drawablePadding="@dimen/_10sdp"
+            android:background="@drawable/custom_edittext"
+            />
 
+        <EditText
+            android:id="@+id/confirm_password_signup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:hint="Confirm Password"
+            android:inputType="textPassword"
+            android:textColor="@color/primary_text"
+            android:textColorHint="@color/hint_color"
+            android:drawableStart="@drawable/lock_svgrepo_com"
+            android:drawablePadding="@dimen/_10sdp"
+            android:background="@drawable/custom_edittext"
+            />
 
-    <Button
-        android:id="@+id/signup_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Sign Up"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:layout_marginTop="10dp"
-        android:layout_marginHorizontal="20dp"
-        app:backgroundTint="@null"
-        android:background="@drawable/custom_button"
-        />
+        <Button
+            android:id="@+id/signup_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sign Up"
+            android:textSize="@dimen/_16ssp"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/_25sdp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            app:backgroundTint="@null"
+            android:background="@drawable/custom_button"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            />
 
-    <TextView
-        android:id="@+id/login_signup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:gravity="center"
-        android:text="Already have account ? Login"
-        android:textColor="#575757"
-        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/login_signup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:gravity="center"
+            android:text="Already have account? Login"
+            android:textColor="@color/secondary_text"
+            android:textStyle="bold"
+            android:textSize="@dimen/_14ssp"
+            android:paddingBottom="@dimen/_20sdp"/>
 
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>

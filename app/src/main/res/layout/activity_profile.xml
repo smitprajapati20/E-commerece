@@ -1,121 +1,160 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ProfileActivity">
+    android:fillViewport="true"
+    android:background="@color/screen_background">
 
-    <TextView
+    <LinearLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:layout_marginBottom="30dp"
-        android:gravity="center"
-        android:text="PROFILE"
-        android:textColor="#1F41BB"
-        android:textSize="30dp"
-        android:textStyle="bold" />
+        android:orientation="vertical"
+        android:padding="@dimen/_20sdp"
+        tools:context=".ProfileActivity">
 
-    <EditText
-        android:id="@+id/name_profile"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="50dp"
-        android:background="@drawable/custom_background"
-        android:hint="Name"
-        android:drawableLeft="@drawable/user_svgrepo_com"
-        android:drawablePadding="8dp"
-        android:inputType="text"
-        android:padding="15dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="@dimen/_30sdp">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:hint="Email"
-        android:id="@+id/email_profile"
-        android:inputType="textEmailAddress"
-        android:layout_marginHorizontal="20dp"
-        android:drawableLeft="@drawable/email_svgrepo_com"
-        android:drawablePadding="8dp"
-        android:padding="15dp"
-        android:background="@drawable/custom_background"
-        />
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="@dimen/_32sdp"
+                android:layout_height="@dimen/_32sdp"
+                android:padding="@dimen/_4sdp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                app:srcCompat="@drawable/outline_arrow_back_24"
+                app:tint="@color/brand_color" />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:hint="Contact"
-        android:drawableLeft="@drawable/contact_new_svgrepo_com"
-        android:drawablePadding="8dp"
-        android:id="@+id/contact_profile"
-        android:inputType="phone"
-        android:layout_marginHorizontal="20dp"
-        android:padding="15dp"
-        android:background="@drawable/custom_background"
-        />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="PROFILE"
+                android:gravity="center"
+                android:textColor="@color/brand_color"
+                android:textSize="@dimen/_22ssp"
+                android:textStyle="bold"
+                android:layout_marginEnd="@dimen/_32sdp"/>
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:hint="Password"
-        android:id="@+id/password_profile"
-        android:drawableLeft="@drawable/lock_svgrepo_com"
-        android:drawablePadding="8dp"
-        android:inputType="textPassword"
-        android:layout_marginHorizontal="20dp"
-        android:padding="15dp"
-        android:background="@drawable/custom_background"
-        />
+        </LinearLayout>
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:hint="Confirm Password"
-        android:id="@+id/confirm_password_profile"
-        android:drawableLeft="@drawable/lock_svgrepo_com"
-        android:drawablePadding="8dp"
-        android:inputType="textPassword"
-        android:layout_marginHorizontal="20dp"
-        android:padding="15dp"
-        android:background="@drawable/custom_background"
-        />
+        <EditText
+            android:id="@+id/name_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/custom_background"
+            android:hint="Name"
+            android:textColor="@color/primary_text"
+            android:textColorHint="@color/hint_color"
+            android:drawableStart="@drawable/user_svgrepo_com"
+            android:drawablePadding="@dimen/_10sdp"
+            android:inputType="textPersonName"
+            android:padding="@dimen/_15sdp" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="EDIT PROFILE"
-        android:id="@+id/profile_btn"
-        android:layout_marginTop="50dp"
-        android:layout_marginHorizontal="20dp"
-        android:textSize="20dp"
-        android:padding="10dp"
-        android:background="@drawable/custom_button"
-        app:backgroundTint="@null"
-        />
+        <EditText
+            android:id="@+id/email_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/primary_text"
+            android:textColorHint="@color/hint_color"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:drawableStart="@drawable/email_svgrepo_com"
+            android:drawablePadding="@dimen/_10sdp"
+            android:padding="@dimen/_15sdp"
+            android:background="@drawable/custom_background"
+            />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="UPDATE PROFILE"
-        android:id="@+id/update_profile_btn"
-        android:layout_marginTop="50dp"
-        android:layout_marginHorizontal="20dp"
-        android:textSize="20dp"
-        android:padding="10dp"
-        android:background="@drawable/custom_button"
-        app:backgroundTint="@null"
-        android:visibility="gone"
-        />
+        <EditText
+            android:id="@+id/contact_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:hint="Contact"
+            android:textColor="@color/primary_text"
+            android:textColorHint="@color/hint_color"
+            android:drawableStart="@drawable/contact_new_svgrepo_com"
+            android:drawablePadding="@dimen/_10sdp"
+            android:inputType="phone"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:padding="@dimen/_15sdp"
+            android:background="@drawable/custom_background"
+            />
 
+        <EditText
+            android:id="@+id/password_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:hint="Password"
+            android:textColor="@color/primary_text"
+            android:textColorHint="@color/hint_color"
+            android:drawableStart="@drawable/lock_svgrepo_com"
+            android:drawablePadding="@dimen/_10sdp"
+            android:inputType="textPassword"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:padding="@dimen/_15sdp"
+            android:background="@drawable/custom_background"
+            />
 
+        <EditText
+            android:id="@+id/confirm_password_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:hint="Confirm Password"
+            android:textColor="@color/primary_text"
+            android:textColorHint="@color/hint_color"
+            android:drawableStart="@drawable/lock_svgrepo_com"
+            android:drawablePadding="@dimen/_10sdp"
+            android:inputType="textPassword"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:padding="@dimen/_15sdp"
+            android:background="@drawable/custom_background"
+            android:visibility="gone"
+            />
 
+        <Button
+            android:id="@+id/profile_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="EDIT PROFILE"
+            android:layout_marginTop="@dimen/_40sdp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:textSize="@dimen/_16ssp"
+            android:padding="@dimen/_10sdp"
+            android:background="@drawable/custom_button"
+            app:backgroundTint="@null"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            />
 
-</LinearLayout>
+        <Button
+            android:id="@+id/update_profile_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="UPDATE PROFILE"
+            android:layout_marginTop="@dimen/_40sdp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:textSize="@dimen/_16ssp"
+            android:padding="@dimen/_10sdp"
+            android:background="@drawable/custom_button"
+            app:backgroundTint="@null"
+            android:visibility="gone"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            />
+
+    </LinearLayout>
+</ScrollView>

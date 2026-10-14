@@ -1,5 +1,8 @@
 package com.example.masterapp;
 
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -7,14 +10,12 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
 
 public class ForgetPasswordActivity extends AppCompatActivity {
 
-    //Variable
     EditText email_forget, new_password, confirm_password;
+    SQLiteDatabase db ;
 
     Button changePassword;
     @Override
@@ -23,17 +24,19 @@ public class ForgetPasswordActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_forget_password);
 
+        db = openOrCreateDatabase(ConstantSP.DataB,MODE_PRIVATE,null);
+        String userTable = "CREATE TABLE IF NOT EXISTS user(userid INTEGER PRIMARY KEY AUTOINCREMENT,name VARCHAR(50), email VARCHAR(30), contact VARCHAR(10), password VARCHAR(20))";
+        db.execSQL(userTable);
+
         email_forget = findViewById(R.id.email_forget);
         new_password = findViewById(R.id.new_password_forget);
         confirm_password = findViewById(R.id.confirm_new_password_forget);
         changePassword = findViewById(R.id.change_password_btn);
 
-
         changePassword.setOnClickListener(view -> {
             String email = email_forget.getText().toString().trim();
             String newPassword = new_password.getText().toString().trim();
             String confirmPassword = confirm_password.getText().toString().trim();
-
 
             if(email.isEmpty()){
                 email_forget.setError("Enter Email");
@@ -61,14 +64,21 @@ public class ForgetPasswordActivity extends AppCompatActivity {
                 return;
             }
             else {
-                Toast.makeText(this, "Password Changed Successfully", Toast.LENGTH_SHORT).show();
-            }
-        });
+                String checkUser = "SELECT * FROM user WHERE email = '"+email+"' ";
+                Cursor cursor = db.rawQuery(checkUser, null);
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+                if (cursor.getCount() > 0){
+                    String updatePassword = "UPDATE user SET password = '"+newPassword+"' WHERE email = '"+email+"'";
+                    db.execSQL(updatePassword);
+                    Toast.makeText(this, "Password Changed Successfully", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(ForgetPasswordActivity.this,MainActivity.class));
+                    finish();
+                }
+                else {
+                    email_forget.setError("User does not exist");
+                    email_forget.requestFocus();
+                }
+            }
         });
     }
 }

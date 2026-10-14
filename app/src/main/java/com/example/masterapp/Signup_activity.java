@@ -1,9 +1,9 @@
 package com.example.masterapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.widget.Button;
@@ -13,20 +13,16 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.snackbar.Snackbar;
 
 public class Signup_activity extends AppCompatActivity {
 
     TextView login_signup;
-
     EditText name, email_signup, number_signup, password_signup, confirm_password_signup;
-
     Button signup_button;
     SQLiteDatabase db;
+    SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +30,10 @@ public class Signup_activity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_signup);
 
-        db = openOrCreateDatabase("masterapp.db", MODE_PRIVATE, null);
-        String userTable = "CREATE TABLE IF NOT EXISTS user(userid INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR(50), email VARCHAR(30), contact VARCHAR(10), password VARCHAR(20))";
+        db = openOrCreateDatabase(ConstantSP.DataB, MODE_PRIVATE, null);
+        sp = getSharedPreferences(ConstantSP.DataB, MODE_PRIVATE);
+
+        String userTable = "CREATE TABLE IF NOT EXISTS user(userid INTEGER PRIMARY KEY AUTOINCREMENT,name VARCHAR(50), email VARCHAR(30), contact VARCHAR(10), password VARCHAR(20))";
         db.execSQL(userTable);
 
         name = findViewById(R.id.name_signup);
@@ -68,7 +66,6 @@ public class Signup_activity extends AppCompatActivity {
                 email_signup.requestFocus();
                 return;
             }
-
             if (number_text.isEmpty()){
                 number_signup.setError("Enter Number");
                 number_signup.requestFocus();
@@ -99,31 +96,36 @@ public class Signup_activity extends AppCompatActivity {
                 confirm_password_signup.requestFocus();
                 return;
             }
-
-            else{
-                String checkUser = "SELECT * FROM user WHERE email = '"+email_text+"' OR contact = '"+number_text+"'";
+            else {
+                String checkUser = "SELECT * FROM user WHERE email = '"+email_text+"' OR contact = '"+number_text+"' ";
                 Cursor cursor = db.rawQuery(checkUser, null);
-                if(cursor.getCount()>0){
-                    Toast.makeText(this, "User Already Exists!", Toast.LENGTH_LONG).show();
+
+                if (cursor.getCount() > 0){
+                    Toast.makeText(this, "User already exists", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     String insertUser = "INSERT INTO user VALUES(NULL, '"+name_text+"', '"+email_text+"', '"+number_text+"', '"+password_text+"')";
                     db.execSQL(insertUser);
+                    sp.edit()
+                            .putString(ConstantSP.name, name_text)
+                            .putString(ConstantSP.contact, number_text)
+                            .putString(ConstantSP.email, email_text)
+                            .putString(ConstantSP.password, password_text)
+                            .apply();
 
                     Toast.makeText(this, "User Added Successfully!", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(Signup_activity.this, DashboardActivity.class));
+                    finish();
                 }
             }
-
         });
 
-//        login_signup.setOnClickListener(view -> {
-//            Snackbar.make(view, "Welcome back", Snackbar.LENGTH_SHORT).setAction("Next", v -> {
-//                            Intent intent = new Intent(Signup_activity.this, MainActivity.class);
-//                            startActivity(intent);
-//            }).show();
-////            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com"));
-////            startActivity(intent);
-//        });
-
+        login_signup.setOnClickListener(view -> {
+            Snackbar.make(view, "Welcome back", Snackbar.LENGTH_SHORT)
+                    .setAction("Next", v -> {
+                            startActivity(new Intent(Signup_activity.this, MainActivity.class));
+                            finish();
+            }).show();
+        });
     }
 }
