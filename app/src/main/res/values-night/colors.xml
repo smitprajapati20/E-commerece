@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="screen_background">#121212</color>
+    <color name="edittext_background">#1E1E1E</color>
+    <color name="edittext_stroke">#2D2D2D</color>
+    <color name="primary_text">#FFFFFF</color>
+    <color name="secondary_text">#B3B3B3</color>
+    <color name="brand_color">#64B5F6</color>
+    <color name="hint_color">#888888</color>
+</resources>

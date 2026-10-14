@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Product_Detail">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_25sdp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="@dimen/_30sdp">
+
+        <ImageView
+            android:id="@+id/pdback"
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
+            android:padding="@dimen/_4sdp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            app:srcCompat="@drawable/outline_arrow_back_24"
+            app:tint="@color/brand_color" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Product Detail"
+            android:gravity="center"
+            android:textColor="@color/brand_color"
+            android:textSize="@dimen/_22ssp"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/_32sdp"/>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/pdimage"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="@dimen/_200sdp"
+        android:layout_gravity="center_horizontal"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_20sdp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_18sdp"
+            android:textStyle="bold"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:textColor="@color/brand_color"
+            android:text="Price"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Original Price"
+            android:textSize="@dimen/_10sdp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:textColor="#808080"
+            android:background="@drawable/line"
+            android:id="@+id/original_price"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Discounted Price"
+            android:textSize="@dimen/_16sdp"
+            android:id="@+id/discounted_price"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_20sdp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rating"
+            android:textColor="@color/brand_color"
+            android:textStyle="bold"
+            android:textSize="@dimen/_18sdp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/review"
+            android:text="5.0⭐"
+            android:textSize="@dimen/_16sdp"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            />
+
+        <ImageView
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            app:srcCompat = "@drawable/wishlistoff"
+            android:id="@+id/whishlistImg"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_20sdp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/brand_color"
+        android:textSize="@dimen/_16sdp"
+        android:textStyle="bold"
+        android:text="Description"
+        />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_13sdp"
+            android:text="hello"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:id="@+id/description"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>
