@@ -138,4 +138,58 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginVertical="@dimen/_20sdp"
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add to cart"
+            android:textSize="@dimen/_15sdp"
+            android:textStyle="bold"
+            android:textColor="@color/brand_color"/>
+        <ImageView
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:id="@+id/cart"
+            android:layout_marginHorizontal="@dimen/_15sdp"
+            app:srcCompat = "@drawable/cart"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/cartlayout"
+            android:visibility="gone"
+            android:layout_marginVertical="@dimen/_15sdp"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-"
+                android:id="@+id/minus"
+                android:paddingHorizontal="@dimen/_10sdp"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                android:textSize="@dimen/_20sdp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:id="@+id/cartvalue"
+                android:textSize="@dimen/_20sdp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+"
+                android:id="@+id/plus"
+                android:paddingHorizontal="@dimen/_10sdp"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                android:textSize="@dimen/_20sdp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
 </LinearLayout>

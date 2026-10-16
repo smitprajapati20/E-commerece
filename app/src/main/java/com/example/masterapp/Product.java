@@ -121,6 +121,9 @@ public class Product extends AppCompatActivity {
         String ProductTable = "CREATE TABLE IF NOT EXISTS product(productid INTEGER PRIMARY KEY AUTOINCREMENT,subcategoryid INTEGER,name VARCHAR(50), image VARCHAR, o_rate INTEGER, d_rate INTEGER, rating VARCHAR, description TEXT)";
         db.execSQL(ProductTable);
 
+
+
+
         for(int i=0; i< Pid.length;i++){
             String checkproduct = "SELECT * FROM product WHERE name = '"+Pname[i]+"' ";
             Cursor cursor = db.rawQuery(checkproduct,null);

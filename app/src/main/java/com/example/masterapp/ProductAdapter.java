@@ -58,6 +58,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
                     .putInt(ConstantSP.productid,arrayList.get(position).getPid())
                     .putString(ConstantSP.description,arrayList.get(position).getDescription())
                     .putString(ConstantSP.productname,arrayList.get(position).getPname())
+                    .putInt(ConstantSP.productimg,arrayList.get(position).getPimg())
                     .putInt(ConstantSP.o_rate,arrayList.get(position).getO_rate())
                     .putInt(ConstantSP.d_rate,arrayList.get(position).getD_rate())
                     .putString(ConstantSP.rating,arrayList.get(position).getRating())
