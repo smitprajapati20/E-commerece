@@ -148,7 +148,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Add to cart"
-            android:textSize="@dimen/_15sdp"
+            android:textSize="@dimen/_20sdp"
             android:textStyle="bold"
             android:textColor="@color/brand_color"/>
         <ImageView
@@ -163,7 +163,6 @@
             android:orientation="horizontal"
             android:id="@+id/cartlayout"
             android:visibility="gone"
-            android:layout_marginVertical="@dimen/_15sdp"
             android:gravity="center_horizontal">
 
             <TextView

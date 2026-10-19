@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -47,6 +48,9 @@ public class Product_Detail extends AppCompatActivity {
 
         String wishlistTable = "CREATE TABLE IF NOT EXISTS wishlist(wishlistid INTEGER PRIMARY KEY AUTOINCREMENT, productid INTEGER, userid INTEGER)";
         db.execSQL(wishlistTable);
+
+        String cartTable = "CREATE TABLE IF NOT EXISTS cart(cartid INTEGER PRIMARY KEY AUTOINCREMENT, productid INTEGER, userid INTEGER, quantity INTEGER)";
+        db.execSQL(cartTable);
 
         image = findViewById(R.id.pdimage);
         back = findViewById(R.id.pdback);
@@ -100,29 +104,104 @@ public class Product_Detail extends AppCompatActivity {
 
         });
 
+//        String checkcart = "SELECT * FROM cart WHERE productid = '"+sp.getInt(ConstantSP.productid, 0)+"' AND userid = '"+sp.getInt(ConstantSP.userid, 0)+"'";
+//        Cursor cursorCart = db.rawQuery(checkcart, null);
+//        if(cursorCart.getCount()>0){
+//            cartlayout.setVisibility(View.VISIBLE);
+//            cart.setVisibility(View.GONE);
+//            Log.d("CART_QTY", String.valueOf(cursorCart.getCount()));
+//            cartTotal = cursorCart.getInt(2);
+//            Log.d("CART_QTY", String.valueOf(cartTotal));
+////            cartvalue.setText(String.valueOf(cartTotal));
+////            String fetchquentity = "SELECT * FROM cart WHERE productid = '"+sp.getInt(ConstantSP.productid, 0)+"' AND userid = '"+sp.getInt(ConstantSP.userid, 0)+"'";
+////            Cursor cursorQuantity = db.rawQuery(fetchquentity, null);
+////            if(cursorQuantity.getCount()>0){
+////                Log.d("Cart_QTY", String.valueOf(cursorQuantity.getCount()));
+////                cartTotal = cursorQuantity.getInt(3);
+////                Log.d("Cart_QTY", String.valueOf(cartTotal));
+//////                cartvalue.setText(String.valueOf(cursorQuantity.getInt(3)));
+////            }
+////            else{
+////                cartTotal = 0;
+////            }
+//        }
+//        else{
+//            cart.setVisibility(View.VISIBLE);
+//            cartlayout.setVisibility(View.GONE);
+//        }
+
+
+        String checkCart = "SELECT * FROM cart WHERE productid = '" + sp.getInt(ConstantSP.productid, 0) + "' AND userid = '" + sp.getInt(ConstantSP.userid, 0) + "'";
+        Cursor cursorCart = db.rawQuery(checkCart, null);
+
+        if (cursorCart.moveToFirst()) {
+            cartlayout.setVisibility(View.VISIBLE);
+            cart.setVisibility(View.GONE);
+            cartTotal = cursorCart.getInt(3);
+            cartvalue.setText(String.valueOf(cartTotal));
+        } else {
+            cartTotal = 0;
+            cart.setVisibility(View.VISIBLE);
+            cartlayout.setVisibility(View.GONE);
+        }
+
         cart.setOnClickListener(v ->{
             Toast.makeText(Product_Detail.this, "Added To Cart!", Toast.LENGTH_SHORT).show();
-            cartTotal++;
+            cartTotal = 1;
+            String insertInCart = "INSERT INTO cart VALUES(NULL, '"+sp.getInt(ConstantSP.productid, 0)+"', '"+sp.getInt(ConstantSP.userid, 0)+"','"+cartTotal+"')";
+            db.execSQL(insertInCart);
             cartvalue.setText(String.valueOf(cartTotal));
             cartlayout.setVisibility(View.VISIBLE);
             cart.setVisibility(View.GONE);
         });
 
         minus.setOnClickListener(v ->{
+            // jyare cart ni value 1 hase jo tyare minus par click thase to obviously 1 - 1 = 0 thase
+            // to tyare aapde aa layout hataine fari carticon lavisu etle aa condition rakhi chhe
+            // and sathe sathe cartTable mathi ene delete karai desu
             if(cartTotal==1){
+                cartTotal = 0;
+//                String deleteFromCart = "DELETE FROM cart WHERE productid = '"+sp.getInt(ConstantSP.productid, 0)+"' AND userid = '"+sp.getInt(ConstantSP.userid, 0)+"'";
+//                db.execSQL(deleteFromCart);
                 cartlayout.setVisibility(View.GONE);
                 cart.setVisibility(View.VISIBLE);
             }
+            // jo cart ni value 1 nai hoy and click thase to normaly just -1 thase.
+            // and navi value ne aapde update karai daisu
             else{
                 cartTotal--;
+//                String updateMinusCart = "UPDATE cart SET quantity = quantity - 1 WHERE productid = '"+sp.getInt(ConstantSP.productid, 0)+"' AND userid = '"+sp.getInt(ConstantSP.userid, 0)+"'";
+//                db.execSQL(updateMinusCart);
                 cartvalue.setText(String.valueOf(cartTotal));
             }
         });
 
+        // jo cart ni value kai b hoy and plus click thase to +1 thase.
+        // and navi value ne aapde update karai daisu.
         plus.setOnClickListener(view -> {
             cartTotal++;
+//            String updatePlusCart = "UPDATE cart SET quantity = quantity + 1 WHERE productid = '"+sp.getInt(ConstantSP.productid, 0)+"' AND userid = '"+sp.getInt(ConstantSP.userid, 0)+"'";
+//            db.execSQL(updatePlusCart);
             cartvalue.setText(String.valueOf(cartTotal));
         });
 
+    }
+
+    // aa tyare work karse(run thase) jyare app ma biju kaai kaam nai thatu hoy
+    // ka pacchi jyare aapde aa page mathi bare nikdisu tyare
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        int productid = sp.getInt(ConstantSP.productid, 0);
+        int userid = sp.getInt(ConstantSP.userid, 0);
+
+        if (cartTotal > 0) {
+            String updateCart = "UPDATE cart SET quantity = " + cartTotal + " WHERE productid = " + productid + " AND userid = " + userid;
+            db.execSQL(updateCart);
+        } else {
+            String deleteCart = "DELETE FROM cart WHERE productid = " + productid + " AND userid = " + userid;
+            db.execSQL(deleteCart);
+        }
     }
 }
